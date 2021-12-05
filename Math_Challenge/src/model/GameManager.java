@@ -24,13 +24,10 @@ public class GameManager implements Serializable {
 	
 	
 	
-	
-	
 	public GameManager() {
 		try {
 			importData();
 		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
