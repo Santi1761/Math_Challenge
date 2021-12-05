@@ -11,6 +11,7 @@ public class Timer extends Thread {
 	
 	
 	public Timer(int time,GUIController a) {
+		
 		this.time = time;
 		app = a;
 		
@@ -18,13 +19,17 @@ public class Timer extends Thread {
 		
 	
 	public void run() {
+		
 		while (time > 0) {
+			
 			Platform.runLater(new Runnable() {
 				
 				@Override
 				public void run() {
+					
 					try {
 						app.updateSeconds();
+						
 					}catch (Error e) {
 						
 					}
