@@ -8,16 +8,19 @@ public class BarThread extends Thread {
 	
 	private GUIController app;
 	private int time;
+	
+	
 	public BarThread(GUIController a) {
+		
 		app = a;
 		time = 100;
 	}
 	
-	public void run(){
-		
-		
+	
+	public void run(){		
 		
 		while (time > 0) {
+			
 			Platform.runLater(new Runnable() {
 				
 				@Override
@@ -25,13 +28,10 @@ public class BarThread extends Thread {
 					
 					try {
 						
-						app.updateBar(time);
+						app.updateBar(time);						
+					} catch (Exception e) {					
 						
-					} catch (Exception e) {
-						
-						
-					}
-					
+					}					
 				}
 			});
 			
@@ -42,8 +42,7 @@ public class BarThread extends Thread {
 				
 				e.printStackTrace();
 			}
-			time --;
-			
+			time --;			
 		}
 	}
 

@@ -89,41 +89,49 @@ public class GUIController {
 	    private Rectangle timeBar;
 	    
 	    GameManager manager;
-	    
-	    
-	    
+	    	        
 	    
 	    public GUIController() {
-	    	manager = new GameManager();
 	    	
-	    	
+	    	manager = new GameManager();	    	
 	    }
 	    
+	    
 	    public  void initialize() {
+	    	
 	    	initializeLeaderBoard();
 	    }
 	    
 	    
 	    public void initializeLeaderBoard() {
+	    	
 	    	if (manager.getRoot() != null) {
-	    		setLeaderBoardTV();
 	    		
+	    		setLeaderBoardTV();	    		
 	    	}
 	    	if (manager.getCurrent() == null) {
+	    		
 	    		msgLb.setText("");
 	    	}
 	    }
+	    
 
 	    private void setLeaderBoardTV() {
+	    	
 	    	ArrayList<User> a = (ArrayList<User>) manager.getUsersList();
 	    	ArrayList<User> b = new ArrayList<>();
+	    	
 	    	if (a.size() < 5) {
+	    		
 	    		b = a;
 	    	}else {
+	    		
 	    		for (int i = 0; i < 5; i++) {
+	    			
 		    		a.add(a.get(i));
 		    	}
 	    	}
+	    	
 	    	
 	    	ObservableList<User> observableList;
 	    	observableList = FXCollections.observableArrayList(b);
@@ -131,19 +139,20 @@ public class GUIController {
 	    	tv.setItems(observableList);
 	    	nameTc.setCellValueFactory(new PropertyValueFactory<User,String>("name"));
 	    	scoreTc.setCellValueFactory(new PropertyValueFactory<User,Integer>("score"));
-	    	posTc.setCellValueFactory(new PropertyValueFactory<User,Integer>("position"));
-	    	
-						
+	    	posTc.setCellValueFactory(new PropertyValueFactory<User,Integer>("position"));					
 		}
 
+	    
 		@FXML
 	    private TextField usernameTextField;
 
 		@FXML
-	    void go(ActionEvent event) throws IOException {
+	    public void go(ActionEvent event) throws IOException {			
 			
 			String res = usernameTextField.getText();
+			
 			if (!res.isEmpty()) {
+				
 				manager.setCurrent(new User(res));
 				mainStage  = new Stage();
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPane.fxml"));
@@ -160,24 +169,24 @@ public class GUIController {
 				barT.setDaemon(true);
 				timer.start();
 				barT.start();
-				
 				}else {
-				Alert a = new Alert(AlertType.ERROR, "Username textfield must be not empty!", ButtonType.OK);
-				a.setTitle("What?!");
-				a.showAndWait();
-			}
-			
-			
+					
+					Alert a = new Alert(AlertType.ERROR, "Username textfield must be not empty!", ButtonType.OK);
+					a.setTitle("What?!");
+					a.showAndWait();
+			}			
 	    }
 		
+		
 		public void initializeMainPane(String username) {
+			
 			this.username.setText(username);
-			createOperaion();
-			
-			
+			createOperaion();			
 		}
 		
+		
 		public void createOperaion() {
+			
 			currentOperation = new Operation();
 			this.n1.setText(currentOperation.getN1()+"");
 			this.n2.setText(currentOperation.getN2()+"");
@@ -192,82 +201,95 @@ public class GUIController {
 
 	    
 		public void selection(int a) {
+			
 			if (currentOperation.getResult() == a) manager.getCurrent().answer(true);
 			else manager.getCurrent().answer(false);
 			createOperaion();
 		}
 
+		
 	    @FXML
-	    void a(ActionEvent event) {
+	    public void a(ActionEvent event) {
+	    	
 	    	selection(Integer.parseInt(opt1.getText()));
 	    }
 
+	    
 	    @FXML
-	    void b(ActionEvent event) {
+	    public void b(ActionEvent event) {
+	    	
 	    	selection(Integer.parseInt(opt2.getText()));
 	    }
+	    
 
 	    @FXML
-	    void c(ActionEvent event) {
+	    public void c(ActionEvent event) {
+	    	
 	    	selection(Integer.parseInt(opt3.getText()));
 	    }
+	    
 
 	    @FXML
-	    void d(ActionEvent event) {
+	    public void d(ActionEvent event) {
+	    	
 	    	selection(Integer.parseInt(opt4.getText()));
 	    }
- 
-	    
+     
 	    
 	    @FXML
-	    void exitGame(ActionEvent event) throws FileNotFoundException, IOException {
+	    public void exitGame(ActionEvent event) throws FileNotFoundException, IOException {
+	    	
 	    	manager.exportData();
 	    	godParent.close();
 	    }
 
+	    
 	    @FXML
-	    void startNewGame(ActionEvent event) throws IOException {
+	    public void startNewGame(ActionEvent event) throws IOException {
+	    	
 	    	manager.exportData();
 	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("UserData.fxml"));
 	    	loader.setController(this);
 	    	Parent parent = loader.load();
 	    	 st = new Stage();
 	    	st.setScene(new Scene(parent));
-	    	st.showAndWait();
-	    	
+	    	st.showAndWait();	    	
 	    }
+	    
 
 		public void updateSeconds() {
-			int s = Integer.parseInt(seconds.getText());
-			seconds.setText((s-1)+"");
 			
+			int s = Integer.parseInt(seconds.getText());
+			seconds.setText((s-1)+"");			
 		}
+		
 
 		public void closeGame() {
+			
 			mainStage.close();
 			manager.addUser();
 			initializeLeaderBoard();
 			msgLb.setText("Your position is: "+ manager.getCurrent().getPosition());
-			
-			
 		}
+		
 
 		public void updateBar(double i) {
-			this.timeBar.setWidth(i);
 			
+			this.timeBar.setWidth(i);		
 		}
 		
 		
 		@FXML
-	    void deleteCurrentScore(ActionEvent event) {
+	    public void deleteCurrentScore(ActionEvent event) {
+			
 			manager.deleteUser();
 			msgLb.setText("");
 			initializeLeaderBoard();
 	    }
 		
+		
 		public void setGod(Stage s) {
+			
 			godParent = s;
-		}
-		
-		
+		}		
 }

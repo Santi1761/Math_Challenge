@@ -13,8 +13,7 @@ public class Timer extends Thread {
 	public Timer(int time,GUIController a) {
 		
 		this.time = time;
-		app = a;
-		
+		app = a;		
 	}
 		
 	
@@ -28,35 +27,37 @@ public class Timer extends Thread {
 				public void run() {
 					
 					try {
-						app.updateSeconds();
-						
+						app.updateSeconds();						
 					}catch (Error e) {
 						
-					}
-					
+					}					
 				}
 			});
 			
 			time --;
+			
+			
 			try {
+				
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
-			}
-			
+			}			
 		}
 		
+	
 		Platform.runLater(new Runnable() {
 			
 			@Override
 			public void run() {
+				
 				try {
+					
 					app.closeGame();
 				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				
+					
+				}				
 			}
 		});
 	}
