@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="380.0" prefWidth="443.0" style="-fx-background-color: #FF8000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="380.0" prefWidth="443.0" style="-fx-background-color: #FF8000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="21.0" layoutY="43.0" style="-fx-text-fill: #fff;" text="Wellcome" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.399999999999977" AnchorPane.topAnchor="43.0">
+      <Label layoutX="21.0" layoutY="43.0" style="-fx-text-fill: #fff;" text="Welcome" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.399999999999977" AnchorPane.topAnchor="43.0">
          <font>
             <Font name="System Bold" size="86.0" />
          </font>

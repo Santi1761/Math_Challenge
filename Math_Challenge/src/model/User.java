@@ -5,9 +5,7 @@ import java.util.List;
 
 public class User implements Comparable<User>, Serializable{
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 
